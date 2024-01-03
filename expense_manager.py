@@ -51,7 +51,7 @@ def update_expense(expense_id, new_details, expenses):
     - bool: True if the update was successful, False otherwise.
     """
     for expense in expenses:
-        if expense['ExpenseId'] == expense_id:
+        if expense['ExpenseId'] == str(expense_id):
             expense.update(new_details)
             return True
     return False

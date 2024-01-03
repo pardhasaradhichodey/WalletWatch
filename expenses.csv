@@ -3,5 +3,5 @@ ExpenseId,Date,Category,Amount,Description
 1,2024-01-03,Entertainment,20.00,Movie ticket
 2,2024-01-04,Transport,15.00,Bus pass
 3,2024-01-02,Rent,880.5,Rent for this month.
-4,2024-01-01,Utilities,35,Wifi Bill
+4,2024-01-01,Utilities,108,Electricity Bills
 5,2024-01-01,Tech ,49,Tech Subscriptions
