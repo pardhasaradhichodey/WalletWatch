@@ -1,6 +1,7 @@
-from user_interface import show_menu, get_expense_details, display_expenses, choose_expense_to_delete
-from expense_manager import add_expense, view_expenses, load_expenses, save_expenses, delete_expense
-
+from user_interface import (show_menu, get_expense_details, display_expenses, 
+                            choose_expense_to_delete, choose_expense_to_update, get_updated_expense_details)
+from expense_manager import (add_expense, view_expenses, load_expenses, save_expenses, 
+                             delete_expense, update_expense)
 def main():
     filename = "expenses.csv"
     expenses = load_expenses(filename)
@@ -24,8 +25,17 @@ def main():
                     print("Failed to delete expense.")
             else:
                 print("Deletion cancelled.")
-
         elif choice == '4':
+            expense_id = choose_expense_to_update(expenses)
+            if expense_id != -1:
+                new_details = get_updated_expense_details()
+                if update_expense(expense_id, new_details, expenses):
+                    print("Expense updated successfully.")
+                else:
+                    print("Failed to update expense.")
+            else:
+                print("Update cancelled.")
+        elif choice == '5':
             save_expenses(expenses, filename)
             print("Exiting the Expense Tracker. Goodbye!")
             break

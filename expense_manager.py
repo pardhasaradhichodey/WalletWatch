@@ -12,25 +12,10 @@ def add_expense(date, category, amount, description, expenses):
     })
 
 def view_expenses(expenses):
-    """
-    Display all expenses.
-
-    Args:
-    - expenses (list): The list of all expenses.
-    """
     for expense in expenses:
         print(f"Date: {expense['Date']}, Category: {expense['Category']}, Amount: {expense['Amount']}, Description: {expense['Description']}")
 
 def load_expenses(filename):
-    """
-    Load expenses from a CSV file.
-
-    Args:
-    - filename (str): Name of the CSV file to load expenses from.
-
-    Returns:
-    - list: A list of expense records.
-    """
     expenses = []
     try:
         with open(filename, mode='r', encoding='utf-8') as file:
@@ -42,13 +27,6 @@ def load_expenses(filename):
     return expenses
 
 def save_expenses(expenses, filename):
-    """
-    Save expenses to a CSV file.
-
-    Args:
-    - expenses (list): The list of all expenses.
-    - filename (str): Name of the CSV file to save expenses to.
-    """
     with open(filename, mode='w', encoding='utf-8', newline='') as file:
         writer = csv.DictWriter(file, fieldnames=["ExpenseId","Date", "Category", "Amount", "Description"])
         writer.writeheader()
@@ -60,3 +38,21 @@ def delete_expense(expenses, expense_id):
             del expenses[i]
             return True
     return False
+def update_expense(expense_id, new_details, expenses):
+    """
+    Update an existing expense.
+
+    Args:
+    - expense_id (int): The ID of the expense to update.
+    - new_details (dict): A dictionary containing the updated expense details.
+    - expenses (list): The list of all expenses.
+
+    Returns:
+    - bool: True if the update was successful, False otherwise.
+    """
+    for expense in expenses:
+        if expense['ExpenseId'] == expense_id:
+            expense.update(new_details)
+            return True
+    return False
+
