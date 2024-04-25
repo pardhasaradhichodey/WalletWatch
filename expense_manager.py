@@ -11,6 +11,25 @@ def add_expense(date, category, amount, description, expenses):
         "Description": description
     })
 
+def sort_expenses(expenses, sort_by):
+    """
+    Sort the list of expenses based on the specified criteria.
+
+    Args:
+    - expenses (list): The list of all expenses.
+    - sort_by (str): The criteria to sort by ('Date', 'Category', 'Amount').
+
+    Returns:
+    - list: The sorted list of expenses.
+    """
+    key_func = {
+        "1": lambda x: x["Date"],
+        "2": lambda x: x["Category"],
+        "3": lambda x: float(x["Amount"])
+    }.get(sort_by, lambda x: x["ExpenseId"])  # Default to sorting by ExpenseId
+
+    return sorted(expenses, key=key_func)
+
 def view_expenses(expenses):
     for expense in expenses:
         print(f"Date: {expense['Date']}, Category: {expense['Category']}, Amount: {expense['Amount']}, Description: {expense['Description']}")

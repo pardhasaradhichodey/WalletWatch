@@ -1,7 +1,8 @@
 from user_interface import (show_menu, get_expense_details, display_expenses, 
-                            choose_expense_to_delete, choose_expense_to_update, get_updated_expense_details)
+                            choose_expense_to_delete, choose_expense_to_update, 
+                            get_updated_expense_details, get_sorting_choice)
 from expense_manager import (add_expense, view_expenses, load_expenses, save_expenses, 
-                             delete_expense, update_expense)
+                             delete_expense, update_expense, sort_expenses)
 def main():
     filename = "expenses.csv"
     expenses = load_expenses(filename)
@@ -36,6 +37,13 @@ def main():
             else:
                 print("Update cancelled.")
         elif choice == '5':
+            sort_choice = get_sorting_choice()
+            if sort_choice in ['1', '2', '3']:
+                sorted_expenses = sort_expenses(expenses, sort_choice)
+                display_expenses(sorted_expenses)
+            elif sort_choice == '4':
+                print("Sorting cancelled.")
+        elif choice == '6':
             save_expenses(expenses, filename)
             print("Exiting the Expense Tracker. Goodbye!")
             break

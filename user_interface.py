@@ -4,8 +4,9 @@ def show_menu():
     print("2. View Expenses")
     print("3. Delete Expense")
     print("4. Update Expense")
-    print("5. Exit")
-    return input("Enter your choice (1-5): ")
+    print("5. Sort and View Expenses")
+    print("6. Exit")
+    return input("Enter your choice (1-6): ")
 
 from datetime import datetime
 
@@ -46,6 +47,22 @@ def get_expense_details():
         "Amount": amount,
         "Description": description
     }
+
+def get_sorting_choice():
+    """
+    Display sorting options and get the user's choice.
+
+    Returns:
+    - str: The user's choice for sorting.
+    """
+    print("\n--- Sort Expenses ---")
+    print("1. Sort by Date")
+    print("2. Sort by Category")
+    print("3. Sort by Amount")
+    print("4. Cancel")
+
+    choice = input("Enter your choice (1-4): ")
+    return choice
 
 def display_expenses(expenses):
     print("\n--- Your Expenses ---")
